@@ -7,6 +7,7 @@ function MainContainer() {
   const [stocks, setStocks] = useState([]);
   const [purchasedStocks, setPurchasedStocks] = useState([]);
   const [sortKey, setSortKey] = useState("");
+  const [filterKey, setFilterKey] = useState("");
 
   //initial fetch to render all stocks
   useEffect(() => {
@@ -33,16 +34,28 @@ function MainContainer() {
       setSortKey("price")
     }
   }
+  function handleFilter(event) {
+    setFilterKey(event)
+  }
 
-  const sortedStocks = [...stocks].sort((a, b) => {
+  const filteredStocks = [...stocks].filter(stock => {
+    if (filterKey === ""){
+      return true
+    } 
+    else return stock.type === filterKey
+  })
+
+  const sortedStocks = [...filteredStocks].sort((a, b) => {
       if (!sortKey) return 0;
       if (a[sortKey] > b[sortKey]) return 1
       if (a[sortKey] < b [sortKey]) return -1
     })
 
+
+
   return (
     <div>
-      <SearchBar handleSort={handleSort}/>
+      <SearchBar handleSort={handleSort} handleFilter={handleFilter}/>
       <div className="row">
         <div className="col-8">
           <StockContainer stocks={sortedStocks} handleBuyStock={handleBuyStock}/>

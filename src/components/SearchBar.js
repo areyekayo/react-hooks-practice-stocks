@@ -1,6 +1,6 @@
 import React from "react";
 
-function SearchBar({handleSort}) {
+function SearchBar({handleSort, handleFilter}) {
   // const [isNameChecked, setIsNameChecked] = useState(false)
   // const [isPriceChecked, setIsPriceChecked] = useState(false)
 
@@ -41,7 +41,7 @@ function SearchBar({handleSort}) {
       <br />
       <label>
         <strong>Filter:</strong>
-        <select onChange={null}>
+        <select onChange={(e) => handleFilter(e.target.value)}>
           <option value="Tech">Tech</option>
           <option value="Sportswear">Sportswear</option>
           <option value="Finance">Finance</option>
