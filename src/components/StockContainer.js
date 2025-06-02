@@ -10,7 +10,7 @@ function StockContainer({stocks, handleBuyStock}) {
   return (
     <div>
       <h2>Stocks</h2>
-      {stocks.map((stock) => <Stock key={stock.id} stock={stock} onBuyStockClick={onBuyStock} isPurchased={false} />)}
+      {stocks.map((stock) => <Stock key={stock.id} stock={stock} onBuyStock={onBuyStock} isPurchased={false} />)}
     </div>
   );
 }

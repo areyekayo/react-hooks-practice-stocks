@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 function MainContainer() {
   const [stocks, setStocks] = useState([]);
   const [purchasedStocks, setPurchasedStocks] = useState([]);
+  const [sortKey, setSortKey] = useState("");
 
   //initial fetch to render all stocks
   useEffect(() => {
@@ -24,12 +25,27 @@ function MainContainer() {
     setPurchasedStocks(updatedStocks)
   }
 
+  function handleSort(category){
+    if(category === "Alphabetically") {
+      setSortKey("name")
+    }
+    if(category === "Price") {
+      setSortKey("price")
+    }
+  }
+
+  const sortedStocks = [...stocks].sort((a, b) => {
+      if (!sortKey) return 0;
+      if (a[sortKey] > b[sortKey]) return 1
+      if (a[sortKey] < b [sortKey]) return -1
+    })
+
   return (
     <div>
-      <SearchBar />
+      <SearchBar handleSort={handleSort}/>
       <div className="row">
         <div className="col-8">
-          <StockContainer stocks={stocks} handleBuyStock={handleBuyStock}/>
+          <StockContainer stocks={sortedStocks} handleBuyStock={handleBuyStock}/>
         </div>
         <div className="col-4">
           <PortfolioContainer purchasedStocks={purchasedStocks} handleSellStock={handleSellStock} />

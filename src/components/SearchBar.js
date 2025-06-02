@@ -1,6 +1,20 @@
 import React from "react";
 
-function SearchBar() {
+function SearchBar({handleSort}) {
+  // const [isNameChecked, setIsNameChecked] = useState(false)
+  // const [isPriceChecked, setIsPriceChecked] = useState(false)
+
+  // function handleNameCheck(event){
+  //  // console.log(event.target.value)
+  //   setIsNameChecked(!isNameChecked)
+  //   handleSort(event.target.value)
+  // }
+
+  // function handlePriceCheck(event){
+  //   setIsPriceChecked(!isPriceChecked)
+  //   handleSort(event.target.value)
+  // }
+
   return (
     <div>
       <strong>Sort by:</strong>
@@ -10,7 +24,7 @@ function SearchBar() {
           value="Alphabetically"
           name="sort"
           checked={null}
-          onChange={null}
+          onChange={(e) => handleSort(e.target.value)}
         />
         Alphabetically
       </label>
@@ -20,7 +34,7 @@ function SearchBar() {
           value="Price"
           name="sort"
           checked={null}
-          onChange={null}
+          onChange={(e) => handleSort(e.target.value)}
         />
         Price
       </label>

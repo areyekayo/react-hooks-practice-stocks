@@ -17,8 +17,8 @@ function Stock({stock, onBuyStock, onSellStock, isPurchased}) {
     <div>
       <div className="card" onClick={handleClick}>
         <div className="card-body">
-          <h5 className="card-title">{ticker}</h5>
-          <p className="card-text">{price}</p>
+          <h5 className="card-title">{name}</h5>
+          <p className="card-text">{ticker} : {price}</p>
         </div>
       </div>
     </div>
